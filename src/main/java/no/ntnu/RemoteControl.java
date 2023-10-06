@@ -45,12 +45,17 @@ public class RemoteControl {
     }
   }
 
+  /**
+   * Establish a connection to a TCP server.
+   *
+   * @return true on success, false on error.
+   */
   private boolean connect() {
     boolean success = false;
     try {
       this.socket = new Socket(SERVER_HOST, PORT_NUMBER);
-      socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-      socketWriter = new PrintWriter(socket.getOutputStream(), true);
+      this.socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      this.socketWriter = new PrintWriter(socket.getOutputStream(), true);
       System.out.println("Connection established");
       success = true;
     } catch (IOException e) {

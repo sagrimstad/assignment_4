@@ -43,6 +43,7 @@ public class SmartTv {
   public static void main(String[] args) {
     SmartTv tv = new SmartTv(13);
     tv.startServer();
+    tv.run();
   }
 
 
@@ -53,8 +54,8 @@ public class SmartTv {
     ServerSocket listeningSocket = openListeningSocket();
     System.out.println("Server listening on port " + PORT_NUMBER);
     if (listeningSocket != null) {
-      isTcpServerRunning = true;
-      while (isTcpServerRunning) {
+      this.isTcpServerRunning = true;
+      while (this.isTcpServerRunning) {
         Socket clientSocket = acceptNextClientConnection(listeningSocket);
         if (clientSocket != null) {
           System.out.println("New client connected from " + clientSocket.getRemoteSocketAddress());
@@ -62,6 +63,18 @@ public class SmartTv {
         }
       }
     }
+  }
+
+  private void run() {
+    if (openListeningSocket1()) {
+      this.isTvOn = true;
+      while (this.isTvOn) {
+        Socket clientSocket = acceptNextClient();
+        ClientHandler clientHandler = new ClientHandler(this, clientSocket);
+        clientHandler.run();
+      }
+    }
+    System.out.println("Server exiting...");
   }
 
   private ServerSocket openListeningSocket() {
@@ -72,6 +85,34 @@ public class SmartTv {
       System.err.println("Could not open server socket: " + e.getMessage());
     }
     return listeningSocket;
+  }
+
+  /**
+   * Open a listening TCP socket.
+   *
+   * @return true on success, false on error.
+   */
+  private boolean openListeningSocket1() {
+    boolean success = false;
+    try {
+      this.serverSocket = new ServerSocket(PORT_NUMBER);
+      System.out.println("Server listening on port " + PORT_NUMBER);
+      success = true;
+    } catch (IOException e) {
+      System.err.println("Could not open a listening socket on port " + PORT_NUMBER
+          + ", reason: " + e.getMessage());
+    }
+    return success;
+  }
+
+  private Socket acceptNextClient() {
+    Socket clientSocket = null;
+    try {
+      clientSocket = this.serverSocket.accept();
+    } catch (IOException e) {
+      System.err.println("Could not accept the next client: " + e.getMessage());
+    }
+    return clientSocket;
   }
 
   private Socket acceptNextClientConnection(ServerSocket listeningSocket) {
@@ -154,16 +195,9 @@ public class SmartTv {
     this.socketWriter.println(response);
   }
 
-  private Socket acceptNextClient() {
-    Socket clientSocket = null;
-    try {
-      clientSocket = this.serverSocket.accept();
-    } catch (IOException e) {
-      System.err.println("Could not accept te next client: " + e.getMessage());
-    }
-    return clientSocket;
-  }
-
+  /**
+   * Shuts down the server.
+   */
   public void shutdown() {
     this.isTvOn = false;
   }
