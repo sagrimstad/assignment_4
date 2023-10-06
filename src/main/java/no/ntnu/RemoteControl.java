@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * A remote control for a smart TV. Acts as a TCP <b>client</b>.
+ * A remote control for a TV. Acts as a TCP <b>client</b>.
  */
 public class RemoteControl {
 
@@ -29,6 +29,23 @@ public class RemoteControl {
   }
 
   private void run() {
+    try {
+      this.socket = new Socket("localhost", PORT_NUMBER);
+      this.socketWriter = new PrintWriter(this.socket.getOutputStream(), true);
+      this.socketReader = new BufferedReader(
+          new InputStreamReader(this.socket.getInputStream()));
+      //sendCommandToServer("1");
+      sendCommandToServer("c");
+      sendCommandToServer("1");
+      sendCommandToServer("c");
+      sendCommandToServer("s13");
+
+    } catch (IOException e) {
+      System.err.println("Could not establish connection to the server: " + e.getMessage());
+    }
+  }
+
+  private void run1() {
     if (connect()) {
       sendAndReceive("c");
       disconnect();
@@ -112,10 +129,9 @@ public class RemoteControl {
     }
   }
 
-  private static void sendCommandToServer(PrintWriter socketWriter, BufferedReader socketReader)
-      throws IOException {
-    socketWriter.println("c");
-    String serverResponse = socketReader.readLine();
+  private void sendCommandToServer(String command) throws IOException {
+    this.socketWriter.println(command);
+    String serverResponse = this.socketReader.readLine();
     System.out.println("Server's response: " + serverResponse);
   }
 }

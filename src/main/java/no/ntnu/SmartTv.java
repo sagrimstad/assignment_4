@@ -43,9 +43,8 @@ public class SmartTv {
   public static void main(String[] args) {
     SmartTv tv = new SmartTv(13);
     tv.startServer();
-    tv.run();
+    //tv.run();
   }
-
 
   /**
    * Start TCP server for this TV.
@@ -119,15 +118,14 @@ public class SmartTv {
     Socket clientSocket = null;
     try {
       clientSocket = listeningSocket.accept();
-      socketReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-      socketWriter = new PrintWriter(clientSocket.getOutputStream(), true);
+      this.socketReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+      this.socketWriter = new PrintWriter(clientSocket.getOutputStream(), true);
 
     } catch (IOException e) {
       System.err.println("Could not accept client connection: " + e.getMessage());
     }
     return clientSocket;
   }
-
 
   private void handleClient(Socket clientSocket) {
     String response;
@@ -167,18 +165,17 @@ public class SmartTv {
         response = handleTurnOnCommand();
       }
     }
-
     return response;
   }
 
   private String handleTurnOnCommand() {
-    isTvOn = true;
+    this.isTvOn = true;
     return OK_RESPONSE;
   }
 
   private String handleChannelCountCommand() {
     String response;
-    if (isTvOn) {
+    if (this.isTvOn) {
       response = "c" + numberOfChannels;
     } else {
       response = "eMust turn the TV on first";
