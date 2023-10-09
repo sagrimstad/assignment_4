@@ -192,10 +192,14 @@ public class SmartTv {
     this.socketWriter.println(response);
   }
 
-  /**
-   * Shuts down the server.
-   */
-  public void shutdown() {
-    this.isTvOn = false;
+  public SmartTvState getState() {
+    //TODO
+    //return state;
+    return null;
   }
+
+  public void setState(SmartTvState state) throws IllegalStateException {
+    //TODO
+  }
+
 }
