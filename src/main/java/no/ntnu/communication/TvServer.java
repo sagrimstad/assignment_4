@@ -1,4 +1,4 @@
-package no.ntnu;
+package no.ntnu.communication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import no.ntnu.TvLogic;
 import no.ntnu.message.Command;
 import no.ntnu.message.Message;
 import no.ntnu.message.MessageSerializer;
