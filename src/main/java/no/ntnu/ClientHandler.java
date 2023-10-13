@@ -11,7 +11,7 @@ import java.net.Socket;
  */
 public class ClientHandler {
 
-  private final SmartTv smartTv;
+  private final TvLogic smartTv;
   private final Socket clientSocket;
   private BufferedReader socketReader;
   private PrintWriter socketWriter;
@@ -22,7 +22,7 @@ public class ClientHandler {
    * @param smartTv      the instance of a smartTV.
    * @param clientSocket the TCP socket associated with this client.
    */
-  public ClientHandler(SmartTv smartTv, Socket clientSocket) {
+  public ClientHandler(TvLogic smartTv, Socket clientSocket) {
     this.smartTv = smartTv;
     this.clientSocket = clientSocket;
     System.out.println("Client connected from " + clientSocket.getRemoteSocketAddress()

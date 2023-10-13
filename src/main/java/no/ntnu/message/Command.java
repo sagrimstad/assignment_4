@@ -1,17 +1,16 @@
 package no.ntnu.message;
 
-import no.ntnu.SmartTv;
+import no.ntnu.TvLogic;
 
-public abstract class Command {
-  protected final SmartTv smartTv;
-  protected Command(SmartTv smartTv) {
-    this.smartTv = smartTv;
-  }
-
+/**
+ * A command sent from the client to the server (from remote to TV).
+ */
+public abstract class Command extends Message {
   /**
-   * Execute the command - preform necessary logic calls.
+   * Execute the command.
    *
-   * @return A message containing the response of the command execution.
+   * @param logic The TV logic to be affected by this command
+   * @return The message which contains the output of the command
    */
-  public abstract Message execute();
+  public abstract Message execute(TvLogic logic);
 }

@@ -1,5 +1,7 @@
 package no.ntnu.message;
 
-public interface Message {
-
+/**
+ * An abstract message sent or received by the server.
+ */
+public abstract class Message {
 }
