@@ -1,7 +1,4 @@
-package no.ntnu.run;
-
-import no.ntnu.TvLogic;
-import no.ntnu.communication.TvServer;
+package no.ntnu.tv;
 
 /**
  * Run the whole Smart TV, including the TCP socket communication.

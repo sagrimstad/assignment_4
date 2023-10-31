@@ -3,12 +3,16 @@ package no.ntnu.message;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-import no.ntnu.ErrorMessage;
-import no.ntnu.TvLogic;
+import no.ntnu.tv.TvLogic;
 import org.junit.Test;
 
+/**
+ * Tests for the command logic - checks whether the command execution have the right impact on the
+ * logic.
+ */
 public class CommandTests {
-  private final static int CHANNEL_COUNT = 5;
+
+  private static final int CHANNEL_COUNT = 5;
 
   @Test
   public void testChannelCountWhenTvIsOff() {
@@ -34,8 +38,50 @@ public class CommandTests {
     TvLogic logic = new TvLogic(CHANNEL_COUNT);
     TurnOnCommand c = new TurnOnCommand();
     Message response = c.execute(logic);
-    assertTrue(response instanceof OkMessage);
+    assertTrue(response instanceof TvStateMessage);
     assertTrue(logic.isTvOn());
+  }
+
+  @Test
+  public void testTurnOff() {
+    TvLogic logic = new TvLogic(CHANNEL_COUNT);
+    logic.turnOn();
+    TurnOffCommand c = new TurnOffCommand();
+    Message response = c.execute(logic);
+    assertTrue(response instanceof TvStateMessage);
+    assertTrue(!logic.isTvOn());
+  }
+
+  @Test
+  public void testSetChannel() {
+    TvLogic logic = new TvLogic(CHANNEL_COUNT);
+    logic.turnOn();
+    assertSetChannel(logic, 2);
+    assertSetChannel(logic, CHANNEL_COUNT - 1);
+  }
+
+  private static void assertSetChannel(TvLogic logic, int channel) {
+    SetChannelCommand c = new SetChannelCommand(channel);
+    Message response = c.execute(logic);
+    assertTrue(response instanceof CurrentChannelMessage);
+    assertEquals(channel, logic.getCurrentChannel());
+  }
+
+  @Test
+  public void testSetInvalidChannel() {
+    TvLogic logic = new TvLogic(CHANNEL_COUNT);
+    logic.turnOn();
+    assertInvalidChannel(logic, 0);
+    assertInvalidChannel(logic, -1);
+    assertInvalidChannel(logic, CHANNEL_COUNT + 1);
+  }
+
+  private void assertInvalidChannel(TvLogic logic, int channel) {
+    int oldChannel = logic.getCurrentChannel();
+    SetChannelCommand c = new SetChannelCommand(channel);
+    Message response = c.execute(logic);
+    assertTrue(response instanceof ErrorMessage);
+    assertEquals(oldChannel, logic.getCurrentChannel());
   }
 
 }

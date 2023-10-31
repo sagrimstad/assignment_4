@@ -1,14 +1,13 @@
-package no.ntnu;
+package no.ntnu.tv;
 
 /**
- * A smart TV. Acts as a TCP <b>server</b>.
+ * Smart TV - the logic.
  */
 public class TvLogic {
-
+  private static final String ERR_MUST_TURN_ON = "Must turn on the TV first";
   private boolean isTvOn;
   private final int numberOfChannels;
   private int currentChannel;
-
 
   /**
    * Create a new Smart TV.
@@ -21,22 +20,22 @@ public class TvLogic {
     }
 
     this.numberOfChannels = numberOfChannels;
-    this.isTvOn = false;
-    this.currentChannel = 1;
+    isTvOn = false;
+    currentChannel = 1;
   }
 
   /**
-   * Turns ON the TV.
+   * Turn ON the TV.
    */
   public void turnOn() {
-    this.isTvOn = true;
+    isTvOn = true;
   }
 
   /**
-   * Turns OFF the TV.
+   * Turn OFF the TV.
    */
   public void turnOff() {
-    this.isTvOn = false;
+    isTvOn = false;
   }
 
   /**
@@ -45,7 +44,7 @@ public class TvLogic {
    * @return True when the TV is ON, false when OFF.
    */
   public boolean isTvOn() {
-    return this.isTvOn;
+    return isTvOn;
   }
 
   /**
@@ -56,7 +55,7 @@ public class TvLogic {
    */
   public int getNumberOfChannels() throws IllegalStateException {
     if (!isTvOn) {
-      throw new IllegalStateException("Must turn on the TV first");
+      throw new IllegalStateException(ERR_MUST_TURN_ON);
     }
     return numberOfChannels;
   }
@@ -69,7 +68,7 @@ public class TvLogic {
    */
   public int getCurrentChannel() throws IllegalStateException {
     if (!isTvOn) {
-      throw new IllegalStateException("Must turn on the TV first");
+      throw new IllegalStateException(ERR_MUST_TURN_ON);
     }
     return currentChannel;
   }
@@ -79,27 +78,15 @@ public class TvLogic {
    *
    * @param channel The desired channel
    * @throws IllegalArgumentException When the channel number is invalid
-   * @throws IllegalStateException    When the TV is OFF
+   * @throws IllegalStateException When the TV is OFF
    */
   public void setChannel(int channel) throws IllegalArgumentException, IllegalStateException {
     if (!isTvOn) {
-      throw new IllegalStateException("Must turn on the TV first");
+      throw new IllegalStateException(ERR_MUST_TURN_ON);
     }
     if (channel <= 0 || channel > numberOfChannels) {
       throw new IllegalArgumentException("Invalid channel number");
     }
     currentChannel = channel;
   }
-
-
-  public SmartTvState getState() {
-    //TODO
-    //return state;
-    return null;
-  }
-
-  public void setState(SmartTvState state) throws IllegalStateException {
-    //TODO
-  }
-
 }

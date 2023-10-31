@@ -1,12 +1,14 @@
-package no.ntnu;
-
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertThrows;
 
+import no.ntnu.tv.TvLogic;
 import org.junit.Test;
 
+/**
+ * Tests for the TV logic.
+ */
 public class LogicTests {
   private static final int CHANNEL_COUNT = 10;
 
