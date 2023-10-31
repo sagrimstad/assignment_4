@@ -16,13 +16,23 @@ import static no.ntnu.message.MessageSerializer.TV_STATE_ON_MESSAGE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
+import no.ntnu.message.ChannelCountCommand;
+import no.ntnu.message.ChannelCountMessage;
+import no.ntnu.message.CurrentChannelMessage;
+import no.ntnu.message.ErrorMessage;
+import no.ntnu.message.GetChannelCommand;
+import no.ntnu.message.Message;
+import no.ntnu.message.MessageSerializer;
+import no.ntnu.message.SetChannelCommand;
+import no.ntnu.message.TurnOffCommand;
+import no.ntnu.message.TurnOnCommand;
+import no.ntnu.message.TvStateMessage;
 import org.junit.Test;
 
 /**
  * Tests for message serialization: both to and from the string format.
  */
 public class MessageSerializerTests {
-
   @Test
   public void testNull() {
     assertNull(MessageSerializer.fromString(null));

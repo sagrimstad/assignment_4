@@ -3,15 +3,23 @@ package no.ntnu.message;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
+import no.ntnu.message.CurrentChannelMessage;
+import no.ntnu.message.TvStateMessage;
 import no.ntnu.tv.TvLogic;
+import no.ntnu.message.ChannelCountCommand;
+import no.ntnu.message.ChannelCountMessage;
+import no.ntnu.message.ErrorMessage;
+import no.ntnu.message.Message;
+import no.ntnu.message.SetChannelCommand;
+import no.ntnu.message.TurnOffCommand;
+import no.ntnu.message.TurnOnCommand;
 import org.junit.Test;
 
 /**
- * Tests for the command logic - checks whether the command execution have the right impact on the
- * logic.
+ * Tests for the command logic - checks whether the command execution have the right impact on
+ * the logic.
  */
 public class CommandTests {
-
   private static final int CHANNEL_COUNT = 5;
 
   @Test
