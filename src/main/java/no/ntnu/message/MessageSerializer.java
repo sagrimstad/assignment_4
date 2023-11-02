@@ -1,5 +1,10 @@
 package no.ntnu.message;
 
+import no.ntnu.message.command.ChannelCountCommand;
+import no.ntnu.message.command.GetChannelCommand;
+import no.ntnu.message.command.SetChannelCommand;
+import no.ntnu.message.command.TurnOffCommand;
+import no.ntnu.message.command.TurnOnCommand;
 
 /**
  * Serializes messages to protocol-defined strings and vice versa.

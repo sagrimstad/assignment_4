@@ -11,12 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import no.ntnu.message.ChannelCountCommand;
-import no.ntnu.message.Command;
-import no.ntnu.message.GetChannelCommand;
-import no.ntnu.message.SetChannelCommand;
-import no.ntnu.message.TurnOffCommand;
-import no.ntnu.message.TurnOnCommand;
+import no.ntnu.message.command.ChannelCountCommand;
+import no.ntnu.message.command.Command;
+import no.ntnu.message.command.GetChannelCommand;
+import no.ntnu.message.command.SetChannelCommand;
+import no.ntnu.message.command.TurnOffCommand;
+import no.ntnu.message.command.TurnOnCommand;
 import no.ntnu.remote.ClientMessageListener;
 import no.ntnu.remote.TcpClient;
 

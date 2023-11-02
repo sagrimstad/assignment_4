@@ -1,5 +1,8 @@
-package no.ntnu.message;
+package no.ntnu.message.command;
 
+import no.ntnu.message.ChannelCountMessage;
+import no.ntnu.message.ErrorMessage;
+import no.ntnu.message.Message;
 import no.ntnu.tv.TvLogic;
 
 /**

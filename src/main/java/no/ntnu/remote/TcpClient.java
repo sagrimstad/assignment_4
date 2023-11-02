@@ -8,11 +8,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import no.ntnu.message.ChannelCountMessage;
-import no.ntnu.message.Command;
 import no.ntnu.message.CurrentChannelMessage;
 import no.ntnu.message.Message;
 import no.ntnu.message.MessageSerializer;
 import no.ntnu.message.TvStateMessage;
+import no.ntnu.message.command.Command;
 
 /**
  * TCP client logic for a remote control.

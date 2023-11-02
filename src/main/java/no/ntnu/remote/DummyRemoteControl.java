@@ -8,16 +8,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import no.ntnu.message.ChannelCountCommand;
-import no.ntnu.message.Command;
+
 import no.ntnu.message.CurrentChannelMessage;
 import no.ntnu.message.ErrorMessage;
-import no.ntnu.message.GetChannelCommand;
 import no.ntnu.message.Message;
 import no.ntnu.message.MessageSerializer;
-import no.ntnu.message.SetChannelCommand;
-import no.ntnu.message.TurnOffCommand;
-import no.ntnu.message.TurnOnCommand;
+import no.ntnu.message.command.ChannelCountCommand;
+import no.ntnu.message.command.Command;
+import no.ntnu.message.command.GetChannelCommand;
+import no.ntnu.message.command.SetChannelCommand;
+import no.ntnu.message.command.TurnOffCommand;
+import no.ntnu.message.command.TurnOnCommand;
 
 /**
  * A dummy "remote control" which simply sends a predefined list of commands to the server.

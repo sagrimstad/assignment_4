@@ -5,14 +5,15 @@ import static junit.framework.TestCase.assertTrue;
 
 import no.ntnu.message.CurrentChannelMessage;
 import no.ntnu.message.TvStateMessage;
+import no.ntnu.message.command.ChannelCountCommand;
+import no.ntnu.message.command.SetChannelCommand;
+import no.ntnu.message.command.TurnOffCommand;
+import no.ntnu.message.command.TurnOnCommand;
 import no.ntnu.tv.TvLogic;
-import no.ntnu.message.ChannelCountCommand;
 import no.ntnu.message.ChannelCountMessage;
 import no.ntnu.message.ErrorMessage;
 import no.ntnu.message.Message;
-import no.ntnu.message.SetChannelCommand;
-import no.ntnu.message.TurnOffCommand;
-import no.ntnu.message.TurnOnCommand;
+
 import org.junit.Test;
 
 /**
