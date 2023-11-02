@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -24,13 +25,14 @@ import no.ntnu.remote.TcpClient;
  * Graphical User Interface (GUI) application for a remote control.
  */
 public class GuiApp extends Application implements ClientMessageListener {
-  private static final int WIDTH = 200;
-  private static final int HEIGHT = 150;
+
+  private static final int WIDTH = 300;
+  private static final int HEIGHT = 200;
   private static TcpClient tcpClient;
   private boolean isTvOn = false;
-
   private Parent channelPanel;
   private Button powerButton;
+  private Parent setChannelPanel;
   private Label currentChannelLabel;
   private Label channelCountLabel;
   int currentChannel = -1;
@@ -44,12 +46,13 @@ public class GuiApp extends Application implements ClientMessageListener {
   public void start(Stage stage) throws Exception {
     tcpClient.startListeningThread(this);
     Scene scene = new Scene(createContent(), WIDTH, HEIGHT);
+    stage.setTitle("Remote Control");
     stage.setScene(scene);
     stage.show();
   }
 
   private Parent createContent() {
-    VBox content = new VBox(createPowerPanel(), createChannelPanel());
+    VBox content = new VBox(createPowerPanel(), createChannelPanel(), createSetPanel());
     content.setSpacing(10);
     return content;
   }
@@ -82,6 +85,20 @@ public class GuiApp extends Application implements ClientMessageListener {
         createChannelButtonPanel());
     channelPanel.setDisable(!isTvOn);
     return channelPanel;
+  }
+
+  private Node createSetPanel() {
+    HBox setPanel = new HBox();
+    TextField channelText = new TextField();
+    channelText.setMaxWidth(30);
+
+    Button setChannelButton = new Button("Set Channel");
+    setChannelButton.setOnAction(e -> setChannel(channelText));
+
+    setPanel.setSpacing(10);
+    setPanel.setPadding(new Insets(10));
+    setPanel.getChildren().addAll(channelText, setChannelButton);
+    return setPanel;
   }
 
   private Node createChannelIndicatorPanel() {
@@ -129,5 +146,16 @@ public class GuiApp extends Application implements ClientMessageListener {
   public void handleChannelChange(int channel) {
     currentChannel = channel;
     Platform.runLater(() -> currentChannelLabel.setText("" + currentChannel));
+  }
+
+  private void setChannel(TextField channelText) {
+    if (isTvOn) {
+      try {
+        currentChannel = Integer.parseInt(channelText.getText());
+        tcpClient.sendCommand(new SetChannelCommand(currentChannel));
+      } catch (NumberFormatException e) {
+        // Handle invalid input (non-numeric or out of range)
+      }
+    }
   }
 }
