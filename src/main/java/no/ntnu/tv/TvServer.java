@@ -9,11 +9,12 @@ import no.ntnu.message.Message;
 
 /**
  * Handles the TCP server socket(s).
- * 
- * @author  Group 2
+ *
+ * @author Group 2
  * @version v3.0 (2023.11.02)
  */
 public class TvServer {
+
   public static final int PORT_NUMBER = 10025;
   private final TvLogic logic;
 
@@ -22,7 +23,7 @@ public class TvServer {
 
   /**
    * Constructs an instance of the TvServer class.
-   * 
+   *
    * @param logic The logic to be used in the TV
    */
   public TvServer(TvLogic logic) {
@@ -49,7 +50,7 @@ public class TvServer {
 
   /**
    * Returns a listening socket after it has been opened or null on error.
-   * 
+   *
    * @return A listening socket after it has been opened or null on error
    */
   private ServerSocket openListeningSocket() {
@@ -64,7 +65,7 @@ public class TvServer {
 
   /**
    * Returns the client handler for a client after the connection to the client has been accepted.
-   * 
+   *
    * @param listeningSocket A specified listening socket
    * @return The client handler for a client after the connection to the client has been accepted
    */
@@ -102,7 +103,7 @@ public class TvServer {
 
   /**
    * Removes the client handler for a client after the client has been disconnected.
-   * 
+   *
    * @param clientHandler A specified client handler
    */
   public void clientDisconnected(ClientHandler clientHandler) {

@@ -6,6 +6,7 @@ import no.ntnu.remote.gui.GuiApp;
  * Run one TV remote, with Graphical User Interface (GUI).
  */
 public class RemoteRunner {
+
   /**
    * Main entrypoint of the application.
    *

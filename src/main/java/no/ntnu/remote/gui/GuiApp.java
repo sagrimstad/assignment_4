@@ -32,7 +32,6 @@ public class GuiApp extends Application implements ClientMessageListener {
   private boolean isTvOn = false;
   private Parent channelPanel;
   private Button powerButton;
-  private Parent setChannelPanel;
   private Label currentChannelLabel;
   private Label channelCountLabel;
   int currentChannel = -1;
@@ -154,7 +153,7 @@ public class GuiApp extends Application implements ClientMessageListener {
         currentChannel = Integer.parseInt(channelText.getText());
         tcpClient.sendCommand(new SetChannelCommand(currentChannel));
       } catch (NumberFormatException e) {
-        // Handle invalid input (non-numeric or out of range)
+        // TODO: handle exception
       }
     }
   }

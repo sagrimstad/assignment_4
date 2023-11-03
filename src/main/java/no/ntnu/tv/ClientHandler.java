@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import no.ntnu.message.CurrentChannelMessage;
 import no.ntnu.message.Message;
 import no.ntnu.message.MessageSerializer;
@@ -16,6 +15,7 @@ import no.ntnu.message.command.Command;
  * Handler for one specific client connection (TCP).
  */
 public class ClientHandler extends Thread {
+
   private final Socket socket;
   private final BufferedReader socketReader;
   private final PrintWriter socketWriter;

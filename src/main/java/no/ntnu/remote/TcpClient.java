@@ -18,6 +18,7 @@ import no.ntnu.message.command.Command;
  * TCP client logic for a remote control.
  */
 public class TcpClient {
+
   private static final String SERVER_HOST = "localhost";
   private Socket socket;
   private PrintWriter socketWriter;

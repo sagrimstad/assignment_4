@@ -2,11 +2,12 @@ package no.ntnu.tv;
 
 /**
  * The TvLogic class represents the logic of the smart TV.
- * 
- * @author  Group 2
+ *
+ * @author Group 2
  * @version v1.0 (2023.11.02)
  */
 public class TvLogic {
+
   private static final String ERR_MUST_TURN_ON = "Must turn ON the smart TV first";
   private boolean isTvOn;
   private final int numberOfChannels;
@@ -14,7 +15,7 @@ public class TvLogic {
 
   /**
    * Constructs an instance of the TvLogic class.
-   * 
+   *
    * <p>A specified number of channels cannot be negative or 0.</p>
    *
    * @param numberOfChannels A specified number of channels
@@ -22,8 +23,8 @@ public class TvLogic {
    */
   public TvLogic(int numberOfChannels) {
     if (numberOfChannels < 1) {
-      throw new IllegalArgumentException("A specified number of channels is negative or 0 in " +
-                                         "the constructor");
+      throw new IllegalArgumentException("A specified number of channels is negative or 0 in "
+          + "the constructor");
     }
     this.numberOfChannels = numberOfChannels;
     this.isTvOn = false;
@@ -55,7 +56,7 @@ public class TvLogic {
 
   /**
    * Returns the total number of channels on the smart TV.
-   * 
+   *
    * <p>The smart TV cannot be OFF.</p>
    *
    * @return The total number of channels on the smart TV
@@ -70,7 +71,7 @@ public class TvLogic {
 
   /**
    * Returns the current channel on the smart TV.
-   * 
+   *
    * <p>The smart TV cannot be OFF.</p>
    *
    * @return The current channel on the smart TV
@@ -85,12 +86,12 @@ public class TvLogic {
 
   /**
    * Sets the current channel on the smart TV to a specified channel.
-   * 
+   *
    * <p>A specified channel cannot be negative or 0 or greater than the number of channels on the
    * smart TV.</p>
    *
    * @param channel A specified channel
-   * @throws IllegalStateException If the smart TV is OFF
+   * @throws IllegalStateException    If the smart TV is OFF
    * @throws IllegalArgumentException If a specified channel is negative or 0 or greater than the
    *                                  number of channels on the smart TV
    */
@@ -99,12 +100,12 @@ public class TvLogic {
       throw new IllegalStateException(ERR_MUST_TURN_ON + " in the setChannel method");
     }
     if (channel <= 0) {
-      throw new IllegalArgumentException("A specified channel is negative or 0 in the " +
-                                         "setChannel method");
+      throw new IllegalArgumentException("A specified channel is negative or 0 in the "
+          + "setChannel method");
     }
     if (channel > this.numberOfChannels) {
-      throw new IllegalArgumentException("A specifed channel is greater than the number of " +
-                                         "channels on the smart TV in the setChannel method");
+      throw new IllegalArgumentException("A specified channel is greater than the number of "
+          + "channels on the smart TV in the setChannel method");
     }
     this.currentChannel = channel;
   }

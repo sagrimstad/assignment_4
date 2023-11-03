@@ -9,6 +9,7 @@ import no.ntnu.tv.TvLogic;
  * A message requesting the channel is switched on a Tv.
  */
 public class SetChannelCommand extends Command {
+
   private final int channel;
 
   /**

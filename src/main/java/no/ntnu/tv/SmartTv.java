@@ -4,8 +4,9 @@ package no.ntnu.tv;
  * Run the whole Smart TV, including the TCP socket communication.
  */
 public class SmartTv {
+
   /**
-   * Run the Smart TV, including the server.
+   * Run the Smart TV (logic), including the server.
    *
    * @param args Command line arguments, not used
    */

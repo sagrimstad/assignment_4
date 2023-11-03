@@ -4,6 +4,7 @@ package no.ntnu.message;
  * A message telling wheteher the tTV is ON or off.
  */
 public class TvStateMessage implements Message {
+
   private final boolean isOn;
 
   /**
